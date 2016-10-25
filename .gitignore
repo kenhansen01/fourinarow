@@ -53,6 +53,11 @@ test
 tmp
 bin
 
+*.js
+*.map
+**/*.js
+**/*.map
+
 gulpfile.js
 gulpfile.js.map
 
