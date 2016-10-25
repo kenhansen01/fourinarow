@@ -8,6 +8,7 @@ pids
 *.seed
 
 # Database
+data/*.*
 data/db/**/*.*
 data/logs/**/*.*
 
