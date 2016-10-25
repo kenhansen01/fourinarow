@@ -1,0 +1,44 @@
+﻿<header class="green-gradient">
+  <div *ngIf="player1" id="player_1_name" (click)="showPlayers1=true">
+    <span class="player-label">{{player1.username}}</span>
+  </div>
+  <div *ngIf="!player1" id="player_1_name" (click)="showPlayers1=true">
+    <span class="player-label">Select Player 1</span>
+  </div>
+  <div *ngIf="player2" id="player_2_name" (click)="showPlayers2=true">
+    <span class="player-label">{{player2.username}}</span>
+  </div>
+  <div *ngIf="!player2" id="player_2_name" (click)="showPlayers2=true">
+    <span class="player-label">Select Player 2</span>
+  </div>
+</header>
+<div *ngIf="showPlayers1 || showPlayers2" id="full_select_container">
+  <div *ngIf="showPlayers1">
+    <div *ngFor="let player of allPlayers" class="player-item" [style.display]="player2 !== player ? 'block' : 'none'" (click)="player1=player; showPlayers1=false">
+      <a href="#" class="remove-player">&times;</a>
+      <span>{{player.username}}</span>
+    </div>
+  </div>
+  <div *ngIf="showPlayers2">
+    <div *ngFor="let player of allPlayers" class="player-item" [style.display]="player1 !== player ? 'block' : 'none'" (click)="player2=player; showPlayers2=false">
+      <a href="#" class="remove-player">&times;</a>
+      <span>{{player.username}}</span>
+    </div>
+  </div>
+</div>
+
+<!--<div id="interface" class="board-ui-container green-gradient">
+
+  <a href="#" class="player-color" data-player-color="blue" id="player_1_color"></a>
+  <a href="#" class="player-color" data-player-color="gray" id="player_2_color"></a>
+
+  <div id="end_game">
+    <a href="#" id="end_game_link">&times;</a>
+    End Game
+  </div>
+</div>-->
+<div id="board" class="board-ui-container">
+  <!--<a href="" class="win-link" data-win-color="blue" id="green_win">Green Win</a>
+  <a href="" class="win-link" data-win-color="gray" id="gray_win">Gray Win</a>-->
+  <a href="" class="win-link" data-win-color="tie" id="tie_win" (click)="startGame($event)">Start Game</a>
+</div>

@@ -1,0 +1,119 @@
+@font-face {
+    font-family: 'Open Sans';
+    src: url('OpenSans-Light-webfont.eot');
+    src: url('OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('OpenSans-Light-webfont.woff') format('woff'),
+         url('OpenSans-Light-webfont.ttf') format('truetype'),
+         url('OpenSans-Light-webfont.svg#open_sansbold') format('svg');
+    font-weight: 100;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('OpenSans-Light-webfontItalic.eot');
+    src: url('OpenSans-Light-webfontItalic.eot?#iefix') format('embedded-opentype'),
+         url('OpenSans-Light-webfontItalic.woff') format('woff'),
+         url('OpenSans-Light-webfontItalic.ttf') format('truetype'),
+         url('OpenSans-Light-webfontItalic.svg#open_sansbold') format('svg');
+    font-weight: 100;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('OpenSans-Regular-webfont.eot');
+    src: url('OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('OpenSans-Regular-webfont.woff') format('woff'),
+         url('OpenSans-Regular-webfont.ttf') format('truetype'),
+         url('OpenSans-Regular-webfont.svg#open_sansbold') format('svg');
+    font-weight: 300;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('OpenSans-Italic-webfont.eot');
+    src: url('OpenSans-Italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('OpenSans-Italic-webfont.woff') format('woff'),
+         url('OpenSans-Italic-webfont.ttf') format('truetype'),
+         url('OpenSans-Italic-webfont.svg#open_sansbold') format('svg');
+    font-weight: 300;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('OpenSans-Bold-webfont.eot');
+    src: url('OpenSans-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('OpenSans-Bold-webfont.woff') format('woff'),
+         url('OpenSans-Bold-webfont.ttf') format('truetype'),
+         url('OpenSans-Bold-webfont.svg#open_sansbold') format('svg');
+    font-weight: 500;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('OpenSans-BoldItalic-webfont.eot');
+    src: url('OpenSans-BoldItalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('OpenSans-BoldItalic-webfont.woff') format('woff'),
+         url('OpenSans-BoldItalic-webfont.ttf') format('truetype'),
+         url('OpenSans-BoldItalic-webfont.svg#open_sansbold') format('svg');
+    font-weight: 500;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('OpenSans-SemiBold-webfont.eot');
+    src: url('OpenSans-SemiBold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('OpenSans-SemiBold-webfont.woff') format('woff'),
+         url('OpenSans-SemiBold-webfont.ttf') format('truetype'),
+         url('OpenSans-SemiBold-webfont.svg#open_sansbold') format('svg');
+    font-weight: 700;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('OpenSans-SemiBoldItalic-webfont.eot');
+    src: url('OpenSans-SemiBoldItalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('OpenSans-SemiBoldItalic-webfont.woff') format('woff'),
+         url('OpenSans-SemiBoldItalic-webfont.ttf') format('truetype'),
+         url('OpenSans-SemiBoldItalic-webfont.svg#open_sansbold') format('svg');
+    font-weight: 700;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('OpenSans-ExtraBold-webfont.eot');
+    src: url('OpenSans-ExtraBold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('OpenSans-ExtraBold-webfont.woff') format('woff'),
+         url('OpenSans-ExtraBold-webfont.ttf') format('truetype'),
+         url('OpenSans-ExtraBold-webfont.svg#open_sansbold') format('svg');
+    font-weight: 900;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('OpenSans-ExtraBoldItalic-webfont.eot');
+    src: url('OpenSans-ExtraBoldItalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('OpenSans-ExtraBoldItalic-webfont.woff') format('woff'),
+         url('OpenSans-ExtraBoldItalic-webfont.ttf') format('truetype'),
+         url('OpenSans-ExtraBoldItalic-webfont.svg#open_sansbold') format('svg');
+    font-weight: 900;
+    font-style: italic;
+
+}

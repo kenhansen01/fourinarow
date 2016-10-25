@@ -1,0 +1,159 @@
+.green-gradient {
+	background-image: linear-gradient(-180deg, #B5D083 0%, #538B3F 100%);
+	box-shadow: inset 0px 1px 8px rgba(0,0,0,0.6);
+}
+
+header {
+	height: 60px;
+	background: #538B3F;
+	display: flex;
+}
+
+header > div {
+	flex: 1;
+	line-height: 60px;
+	color: #FFFFFF;
+	font-size: 1.5em;
+	padding: 0 30px;
+}
+
+header .remove-player {
+	background: #d60000;
+	border: 3px solid #FFFFFF;
+	color: #FFFFFF;
+	margin: 9px;
+	box-shadow: 0 1px 8px rgba(0,0,0,.4);
+	display: block;
+	border-radius:50%;
+	width: 42px;
+	height: 42px;
+	font-size: 40px;
+	line-height: 34px;
+	text-decoration: none;
+	text-align: center;
+	float: left;
+}
+
+header span {
+	float: left;
+}
+
+.board-ui-container {
+	height: calc(100vh - 60px);
+}
+
+#interface {
+	/* background: #B5D083; */
+	width: 20vw;
+	float: left;
+}
+
+.player-color {
+	width: 9vw;
+	height: 9vw;
+	margin: 25%;
+	background: #FFFFFF;
+	box-shadow: 0 1px 8px rgba(0,0,0,.4);
+	display: block;
+	border-radius:50%;
+	border: 2px solid #FFFFFF;
+	z-index: 10;
+}
+
+#board {
+	float: left;
+	width: 80vw;
+}
+
+.board-cell {
+	width: 10.2857vw;
+	height: 10.2857vw;
+	/* padding-bottom: 10.2857%; */
+	margin: .35vw;
+	border-radius:50%;
+	box-shadow: 0 1px 5px rgba(0,0,0,.25) inset;
+	/* background: #B5D083; */
+	display: inline-block;
+	position: relative;
+	/* float: left; */
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.board-cell.blue:after,
+.board-cell.gray:after {
+	content:"";
+	display: block;
+	width: 9vw;
+	height: 9vw;
+	position: absolute;
+	border-radius:50%;
+	box-shadow: 0 1px 4px rgba(0,0,0,.5);
+	top: .65vw;
+	left: .65vw;
+}
+
+#player_1_color,
+.board-cell.blue:after {
+	background: #6990CA;
+}
+
+#player_2_color,
+.board-cell.gray:after {
+	background: #E6E7E8
+}
+
+
+.drop-target {
+	border: 3px solid #6990CA;
+}
+
+#end_game {
+	color: #FFFFFF;
+	position: relative;
+	top: 35%;
+	font-weight: 700;
+	width:100%;
+	text-align: center;
+}
+
+#end_game a {
+	margin: 0 auto;
+	background: #d60000;
+	border: 3px solid #FFFFFF;
+	box-shadow: 0 1px 8px rgba(0,0,0,.4);
+	display: block;
+	border-radius:50%;	
+	width: 60px;
+	height: 60px;
+	font-size: 60px;
+	line-height: 50px;
+	text-align: center;
+	text-decoration: none;
+	color: inherit;
+	font-weight: 100;
+}
+
+.win-link {
+	width: calc(50% - 2vw);
+	height: 10.2857vw;
+	margin: 1vw;
+	line-height: 10.2857vw;
+	display: block;
+	float: left;
+	text-align: center;
+	text-decoration: none;
+	font-size: 2em;
+	font-weight: 700;
+	text-transform: uppercase;
+	border-radius: 4px;
+}
+
+#blue_win {
+	color: #FFFFFF;
+	background: #6990CA;
+}
+
+#gray_win {
+	color: #595959;
+	background: #E6E7E8;
+}

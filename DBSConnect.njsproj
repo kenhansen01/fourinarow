@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{a721b7c0-1712-4710-aeee-84b30b663c35}</ProjectGuid>
+    <ProjectHome />
+    <ProjectView>ShowAllFiles</ProjectView>
+    <StartupFile>server.js</StartupFile>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <EnableTypeScript>true</EnableTypeScript>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
+    <NodeExePath>C:\Users\keh0628\AppData\Roaming\npm\nodemon.cmd</NodeExePath>
+    <StartWebBrowser>True</StartWebBrowser>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <ItemGroup>
+    <Content Include=".gitignore" />
+    <Content Include="client\app\app.component.html" />
+    <Content Include="client\app\components\gameplay\css\structure.css" />
+    <Content Include="client\app\components\gameplay\gameplay.component.html" />
+    <Content Include="client\app\components\gamestart\css\structure.css" />
+    <Content Include="client\app\components\gamestart\gamestart.component.html" />
+    <Content Include="client\app\components\signup\images\check.svg" />
+    <Content Include="client\app\components\signup\images\daugherty_logo.svg" />
+    <Content Include="client\app\components\signup\images\daugherty_logo_rev.svg" />
+    <Content Include="client\app\components\signup\images\female.svg" />
+    <Content Include="client\app\components\signup\images\male.svg" />
+    <Content Include="client\app\components\signup\images\next_arrow.svg" />
+    <Content Include="client\app\components\signup\images\next_arrow_rev.svg" />
+    <Content Include="client\app\components\signup\images\plea.svg" />
+    <Content Include="client\app\components\signup\images\tableau_logo.png" />
+    <Content Include="client\app\components\signup\signup.component.html" />
+    <Content Include="client\app\components\tasks\tasks.component.html" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-Bold-webfont.eot" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-Bold-webfont.svg" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-Bold-webfont.ttf" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-Bold-webfont.woff" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-BoldItalic-webfont.eot" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-BoldItalic-webfont.svg" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-BoldItalic-webfont.ttf" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-BoldItalic-webfont.woff" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-ExtraBold-webfont.eot" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-ExtraBold-webfont.svg" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-ExtraBold-webfont.ttf" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-ExtraBold-webfont.woff" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-ExtraBoldItalic-webfont.eot" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-ExtraBoldItalic-webfont.svg" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-ExtraBoldItalic-webfont.ttf" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-ExtraBoldItalic-webfont.woff" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-Italic-webfont.eot" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-Italic-webfont.svg" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-Italic-webfont.ttf" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-Italic-webfont.woff" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-Light-webfont.eot" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-Light-webfont.svg" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-Light-webfont.ttf" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-Light-webfont.woff" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-LightItalic-webfont.eot" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-LightItalic-webfont.svg" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-LightItalic-webfont.ttf" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-LightItalic-webfont.woff" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-Regular-webfont.eot" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-Regular-webfont.svg" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-Regular-webfont.ttf" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-Regular-webfont.woff" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-Semibold-webfont.eot" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-Semibold-webfont.svg" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-Semibold-webfont.ttf" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-Semibold-webfont.woff" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-SemiboldItalic-webfont.eot" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-SemiboldItalic-webfont.svg" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-SemiboldItalic-webfont.ttf" />
+    <Content Include="client\css\fonts\OpenSans\OpenSans-SemiboldItalic-webfont.woff" />
+    <Content Include="client\css\fonts\OpenSans\stylesheet.css" />
+    <Content Include="client\package.json" />
+    <Content Include="client\css\styles.css" />
+    <Content Include="client\tsconfig.json" />
+    <Content Include="data\logs\mongod.log" />
+    <Content Include="mongod.cfg" />
+    <Content Include="package.json" />
+    <Content Include="README.md" />
+    <Content Include="tsconfig.json" />
+    <Content Include="views\index.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="client\app\" />
+    <Folder Include="client\app\components\" />
+    <Folder Include="client\app\components\gameplay\" />
+    <Folder Include="client\app\components\gameplay\css\" />
+    <Folder Include="client\app\components\gamestart\" />
+    <Folder Include="client\app\components\gamestart\css\" />
+    <Folder Include="client\app\components\signup\" />
+    <Folder Include="client\app\components\signup\css\" />
+    <Folder Include="client\app\components\signup\images\" />
+    <Folder Include="client\app\components\tasks\" />
+    <Folder Include="client\app\interfaces\" />
+    <Folder Include="client\css\fonts\" />
+    <Folder Include="client\app\services\" />
+    <Folder Include="client\css\" />
+    <Folder Include="client\css\fonts\OpenSans\" />
+    <Folder Include="data" />
+    <Folder Include="data\db" />
+    <Folder Include="data\db\diagnostic.data" />
+    <Folder Include="data\db\journal" />
+    <Folder Include="data\logs" />
+    <Folder Include="client\" />
+    <Folder Include="utilities\" />
+    <Folder Include="views\" />
+    <Folder Include="routes\" />
+    <Folder Include="typings\" />
+    <Folder Include="typings\globals\" />
+    <Folder Include="typings\globals\node\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="client\app\app.component.ts" />
+    <TypeScriptCompile Include="client\app\app-routing.module.ts" />
+    <TypeScriptCompile Include="client\app\app.module.ts" />
+    <TypeScriptCompile Include="client\app\components\gameplay\gameplay.component.ts" />
+    <TypeScriptCompile Include="client\app\components\gamestart\gamestart.component.ts" />
+    <TypeScriptCompile Include="client\app\components\signup\signup.component.ts" />
+    <TypeScriptCompile Include="client\app\components\tasks\tasks.component.ts" />
+    <TypeScriptCompile Include="client\app\interfaces\Gameplay.ts" />
+    <TypeScriptCompile Include="client\app\interfaces\Game.ts" />
+    <TypeScriptCompile Include="client\app\main.ts" />
+    <TypeScriptCompile Include="client\app\services\game.service.ts" />
+    <TypeScriptCompile Include="client\app\services\gameplay.service.ts" />
+    <TypeScriptCompile Include="client\app\services\player.service.ts" />
+    <TypeScriptCompile Include="client\app\services\task.service.ts" />
+    <TypeScriptCompile Include="client\app\interfaces\Player.ts" />
+    <TypeScriptCompile Include="db.ts" />
+    <TypeScriptCompile Include="routes\gameplay.ts" />
+    <TypeScriptCompile Include="routes\index.ts" />
+    <TypeScriptCompile Include="routes\game.ts" />
+    <TypeScriptCompile Include="routes\player.ts" />
+    <TypeScriptCompile Include="server.ts" />
+    <TypeScriptCompile Include="testapp.ts" />
+    <TypeScriptCompile Include="typings\globals\node\index.d.ts" />
+    <TypeScriptCompile Include="typings\index.d.ts" />
+    <TypeScriptCompile Include="utilities\curry.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="client\systemjs.config.js" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <!--Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them.-->
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:48022/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

@@ -1,0 +1,99 @@
+﻿<div id="page_container" [class]="formVisible ? 'raised':'recessed'">
+
+  <div id="recessed_content" class="green-gradient">
+
+    <div id="opener_container" [style.display]="signupStarted && !formSubmitted ? 'none' : 'block'"  [ngClass]="{'animated': !signupStated || formSubmitted, 'slideInDownBig': !signupStarted && !formSubmitted, 'fadeInDownBig': formSubmitted}">
+      <img src="app/components/signup/images/daugherty_logo_rev.svg" />
+
+      <a id="start_signup" (click)="startSignup($event)">
+        <img src="app/components/signup/images/next_arrow_rev.svg" class="next-arrow" />
+        <span>Sign In</span>
+      </a>
+    </div>
+    <div id="closing_container" [style.display]="signupStarted ? 'block' : 'none'" [ngClass]="{'animated': formSubmitted, 'fadeOutDownBig': formSubmitted}">
+      <h3>Thank You!</h3>
+      <p>
+        We're readying the board&hellip; A member of Team Daugherty
+        will provide you with game pieces very soon.
+      </p>
+      <h3>Let's Play!</h3>
+      <img src="app/components/signup/images/daugherty_logo_rev.svg" />
+      <h4>Follow @DaughertyTweets or #DaughertyConnect4 for updates!</h4>
+    </div>
+    <ul id="pager" [style.display]="signupStarted ? 'block' : 'none'" [ngClass]="{'animated': signupStarted || formSubmitted, 'slideInLeft': signupStarted && !formSubmitted, 'slideOutRight': !signupStarted && formSubmitted}">
+      <li [ngClass]="{'active': !nameEntered}"></li>
+      <li [ngClass]="{'active': nameEntered && !genderEntered}"></li>
+      <li [ngClass]="{'active': genderEntered && !locationEntered}"></li>
+      <li [ngClass]="{'active': locationEntered && !experienceEntered}"></li>
+      <li [ngClass]="{'active': experienceEntered && !jobTypeEntered}"></li>
+      <li [ngClass]="{'active': jobTypeEntered && !formSubmitted}"></li>
+    </ul>
+  </div>
+  <div id="raised_content">
+    <form #f="ngForm" [style.visibility]="formVisible ? '' : 'hidden'">
+      <img src="app/components/signup/images/daugherty_logo.svg" id="main_logo" />
+      <section id="player_name" [ngClass]="{'processed': nameEntered}">
+        <h2>What do you want your game handle to be?</h2>
+        <input type="text" #gameHandle name="game_handle" id="game_handle" [(ngModel)]="player.username" />
+        <label class="control control--checkbox">
+          This is my twitter handle
+          <input type="checkbox" id="is_twitter_handle" />
+          <div class="control__indicator"></div>
+        </label>
+
+        <img src="app/components/signup/images/next_arrow.svg" class="" id="name_twitter" (click)="nameEntered=true" />
+      </section>
+      <section id="player_gender" [ngClass]="{'processed': genderEntered, 'queued': !nameEntered && !genderEntered}">
+        <h2>What gender do you identify with?</h2>
+        <div id="gender_icons">
+          <div *ngFor="let gender of genderOptions" class="gender-container" [attr.data-gender-value]="gender.indexOf('Plea') > 0 ? 'unknown': gender" (click)="player.gender=gender; genderEntered=true;">
+            <img [attr.src]="gender.indexOf('Plea') > 0 ? 'app/components/signup/images/plea.svg': 'app/components/signup/images/'+gender+'.svg'" />
+          </div>
+        </div>
+      </section>
+      <section id="player_location" [ngClass]="{'processed': locationEntered, 'queued': !genderEntered && !locationEntered}">
+        <h2>What country do you live in?</h2>
+        <div id="fake_select" (click)="showCountries=true">Please Choose Your Country</div>
+        <div id="full_select_container" [ngClass]="{'animated': showCountries || hideCountries, 'zoomIn': showCountries, 'zoomOut': hideCountries}" [style.display]="showCountries ? 'block' : 'none'">
+          <div *ngFor="let country of countryOptions" class="country-item" (click)="countrySelector(country)">{{country}}</div>
+        </div>
+      </section>
+      <section id="player_certification" [ngClass]="{'processed': certificationEntered && experienceEntered, 'queued': !locationEntered && !certificationEntered && !experienceEntered}">
+        <h2>
+          <img src="app/components/signup/images/tableau_logo.png" id="tableau_logo" />
+          Are you certified?
+        </h2>
+        <div class="column half">
+          <label class="control control--radio large-font">
+            Yes
+            <input type="radio" name="certification" value="true" [(ngModel)]="player.certified" />
+            <div class="control__indicator"></div>
+          </label>
+        </div>
+        <div class="column half">
+          <label class="control control--radio large-font">
+            No
+            <input type="radio" name="certification" value="false" [(ngModel)]="player.certified" />
+            <div class="control__indicator"></div>
+          </label>
+        </div>
+        <div id="length_of_experience" [style.display]="player.certified !== null ? 'block': 'none'" [ngClass]="{'animated': player.certified !== null, 'zoomIn': player.certified !== null}">
+          <h3>How many years have you been using Tableau?</h3>
+          <div id="experience_grid">
+            <div *ngFor="let year of experienceOptions; let i = index;" class="experience-value" (click)="setExperience(i+1)">{{year}}</div>
+          </div>
+        </div>
+      </section>
+      <section id="player_job_type" [ngClass]="{'processed': jobTypeEntered, 'queued': !jobTypeEntered && !experienceEntered}">
+        <h2>What is your official job type?</h2>
+        <label *ngFor="let job of jobOptions" class="control control--radio">
+          {{job}}
+          <input type="radio" name="job_type" [value]="job" [(ngModel)]="player.jobTitle" />
+          <div class="control__indicator"></div>
+        </label>
+        <button class="final-arrow" type="button" (click)="onSubmit()"></button>
+      </section>
+    </form>
+  </div>
+</div>
+<div [hidden]="!submitting" id="temp_closing_cover"></div>
