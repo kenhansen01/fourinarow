@@ -27,6 +27,10 @@
     <Content Include="client\app\components\gameplay\gameplay.component.html" />
     <Content Include="client\app\components\gamestart\css\structure.css" />
     <Content Include="client\app\components\gamestart\gamestart.component.html" />
+    <Content Include="client\app\components\signup\css\animate.css" />
+    <Content Include="client\app\components\signup\css\controls.css" />
+    <Content Include="client\app\components\signup\css\range.css" />
+    <Content Include="client\app\components\signup\css\structure.css" />
     <Content Include="client\app\components\signup\images\check.svg" />
     <Content Include="client\app\components\signup\images\daugherty_logo.svg" />
     <Content Include="client\app\components\signup\images\daugherty_logo_rev.svg" />
@@ -79,13 +83,14 @@
     <Content Include="client\css\fonts\OpenSans\OpenSans-SemiboldItalic-webfont.ttf" />
     <Content Include="client\css\fonts\OpenSans\OpenSans-SemiboldItalic-webfont.woff" />
     <Content Include="client\css\fonts\OpenSans\stylesheet.css" />
-    <Content Include="client\package.json" />
     <Content Include="client\css\styles.css" />
+    <Content Include="client\package.json" />
     <Content Include="client\tsconfig.json" />
     <Content Include="data\logs\mongod.log" />
     <Content Include="mongod.cfg" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <Content Include="tslint.json" />
     <Content Include="tsconfig.json" />
     <Content Include="views\index.html" />
   </ItemGroup>
@@ -146,7 +151,7 @@
     <TypeScriptCompile Include="utilities\curry.ts" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="client\systemjs.config.js" />
+    <Compile Include="client\systemjs.config.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <!--Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them.-->
