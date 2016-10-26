@@ -11,14 +11,8 @@ let db = new MongoUtils('dbsConnectFour', 'games', 'mongodb://localhost:27017/',
 router.get('/games', (req, res, next) =>
   db.getAll()
     .subscribe(
-    gamesResponse => {
-      db.disconnectFromDb();
-      res.json(gamesResponse)
-    },
-    err => {
-      db.disconnectFromDb();
-      res.send(err);
-    })
+    gamesResponse => res.json(gamesResponse),
+    err => res.send(err))
 );
 
 /**
@@ -27,14 +21,8 @@ router.get('/games', (req, res, next) =>
 router.get('/game/:id', (req, res, next) =>
   db.getOneById(req.params.id)
     .subscribe(
-    gameResponse => {
-      db.disconnectFromDb();
-      res.json(gameResponse)
-    },
-    err => {
-      db.disconnectFromDb();
-      res.send(err)
-    })
+    gameResponse => res.json(gameResponse),
+    err => res.send(err))
 );
 
 /**
@@ -43,14 +31,8 @@ router.get('/game/:id', (req, res, next) =>
 router.post('/game', (req, res, next) =>
   db.saveItem(req.body)
     .subscribe(
-    saveRes => {
-      db.disconnectFromDb();
-      res.json({ _id: saveRes.insertedId.toHexString() });
-    },
-    err => {
-      db.disconnectFromDb();
-      res.send(err)
-    })
+    saveRes => res.json({ _id: saveRes.insertedId.toHexString() }),
+    err => res.send(err))
 );
 
 /**
@@ -59,7 +41,8 @@ router.post('/game', (req, res, next) =>
 router.delete('/game/:id', (req, res, next) => db.deleteItemById(req.params.id)
   .subscribe(
   deleteRes => deleteRes,
-  err => res.send(err)));
+  err => res.send(err))
+);
 
 /**
  * Update an existing game in database
