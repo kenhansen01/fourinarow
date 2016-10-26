@@ -1,41 +1,74 @@
-﻿import * as System from 'systemjs';
-
-const paths: {} = {
-  'npm': '../../node_modules'
-}; 
-
-const map: {} = {
-  // our app is within the app folder
-  app: 'app',
-  // angular bundles
-  '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
-  '@angular/common': 'npm:@angular/common/bundles/common.umd.js',
-  '@angular/compiler': 'npm:@angular/compiler/bundles/compiler.umd.js',
-  '@angular/platform-browser': 'npm:@angular/platform-browser/bundles/platform-browser.umd.js',
-  '@angular/platform-browser-dynamic': 'npm:@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js',
-  '@angular/http': 'npm:@angular/http/bundles/http.umd.js',
-  '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
-  '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
-  // other libraries
-  'rxjs': 'npm:rxjs',
-  'socket.io-client': 'npm:socket.io-client/socket.io.js',
-  'angular-in-memory-web-api': 'npm:angular-in-memory-web-api',
-};
-const packages: {} = {
-  app: {
-    main: './main.js',
-    defaultExtension: 'js'
+﻿SystemJS.config({
+  paths: {
+    'npm': 'node_modules'
   },
-  rxjs: {
-    defaultExtension: 'js'
+  map: {
+    // our app is within the app folder
+    app: 'app',
+    // angular bundles
+    '@angular/core': 'node_modules/@angular/core/bundles/core.umd.js',
+    '@angular/common': 'node_modules/@angular/common/bundles/common.umd.js',
+    '@angular/compiler': 'node_modules/@angular/compiler/bundles/compiler.umd.js',
+    '@angular/platform-browser': 'node_modules/@angular/platform-browser/bundles/platform-browser.umd.js',
+    '@angular/platform-browser-dynamic': 'node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js',
+    '@angular/http': 'node_modules/@angular/http/bundles/http.umd.js',
+    '@angular/router': 'node_modules/@angular/router/bundles/router.umd.js',
+    '@angular/forms': 'node_modules/@angular/forms/bundles/forms.umd.js',
+    // other libraries
+    'rxjs': 'node_modules/rxjs',
+    'socket.io-client': 'node_modules/socket.io-client/socket.io.js',
+    'angular-in-memory-web-api': 'node_modules/angular-in-memory-web-api',
   },
-  'angular-in-memory-web-api': {
-    main: './index.js',
-    defaultExtension: 'js'
+  packages: {
+    app: {
+      main: './main.js',
+      defaultExtension: 'js'
+    },
+    rxjs: {
+      defaultExtension: 'js'
+    },
+    'angular-in-memory-web-api': {
+      main: './index.js',
+      defaultExtension: 'js'
+    }
   }
-};
+})
+//const paths: {} = {
+//  'npm': 'node_modules'
+//};
 
-System.config({ paths, map, packages });
+//const map: {} = {
+//  // our app is within the app folder
+//  'app': 'app',
+//  // angular bundles
+//  '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
+//  '@angular/common': 'npm:@angular/common/bundles/common.umd.js',
+//  '@angular/compiler': 'npm:@angular/compiler/bundles/compiler.umd.js',
+//  '@angular/platform-browser': 'npm:@angular/platform-browser/bundles/platform-browser.umd.js',
+//  '@angular/platform-browser-dynamic': 'npm:@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js',
+//  '@angular/http': 'npm:@angular/http/bundles/http.umd.js',
+//  '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
+//  '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
+//  // other libraries
+//  'rxjs': 'npm:rxjs',
+//  'socket.io-client': 'npm:socket.io-client/socket.io.js',
+//  'angular-in-memory-web-api': 'npm:angular-in-memory-web-api',
+//};
+//const packages: {} = {
+//  app: {
+//    main: './main.js',
+//    defaultExtension: 'js'
+//  },
+//  rxjs: {
+//    defaultExtension: 'js'
+//  },
+//  'angular-in-memory-web-api': {
+//    main: './index.js',
+//    defaultExtension: 'js'
+//  }
+//};
+
+//SystemJS.config({ paths, map, packages });
 
 /**
  * System configuration for Angular samples
