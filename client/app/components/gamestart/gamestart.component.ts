@@ -60,7 +60,8 @@ export class GamestartComponent {
     this.newGame = {
       playerGreen: this.player1._id,
       playerGrey: this.player2._id,
-      winner: 'playing'
+      winner: 'playing',
+      createdAt: new Date()
     }
     this.createGame(this.newGame)
       .mergeMap(newGameId =>
@@ -104,6 +105,9 @@ export class GamestartComponent {
         if (gameplayResponse.winner === 'tie') {
           this.gameInPlay.winner = 'tie';
           this.winnerName = 'Tie Game'
+        }
+        if (gameplayResponse.winner !== 'playing') {
+          this.gameService.updateWinner(this.gameInPlay).subscribe();
         }
       });
   }
