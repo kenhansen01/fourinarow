@@ -23,7 +23,6 @@
   <ItemGroup>
     <Content Include=".gitignore" />
     <Content Include="client\app\app.component.html" />
-    <Content Include="client\app\components\gameplay\css\structure.css" />
     <Content Include="client\app\components\gameplay\gameplay.component.html" />
     <Content Include="client\app\components\gamestart\css\structure.css" />
     <Content Include="client\app\components\gamestart\gamestart.component.html" />
@@ -97,8 +96,6 @@
   <ItemGroup>
     <Folder Include="client\app\" />
     <Folder Include="client\app\components\" />
-    <Folder Include="client\app\components\gameplay\" />
-    <Folder Include="client\app\components\gameplay\css\" />
     <Folder Include="client\app\components\gamestart\" />
     <Folder Include="client\app\components\gamestart\css\" />
     <Folder Include="client\app\components\signup\" />

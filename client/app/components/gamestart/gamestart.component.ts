@@ -21,7 +21,6 @@ import { Gameplay } from '../../interfaces/Gameplay';
 
 export class GamestartComponent {
 
-  socket: SocketIOClient.Socket;
   allPlayers: Player[];
   newGame: Game;
   gameInPlay: Game;
@@ -38,6 +37,8 @@ export class GamestartComponent {
   };
 
   gameGrid: string[][] = this.currentGameplay.gameGrid;
+  winner: string = 'playing';
+  winnerName: string = null;
 
   player1: Player = null;
   player2: Player = null;
@@ -52,11 +53,6 @@ export class GamestartComponent {
     private gameplayService: GameplayService
   ) {
     this.playerService.getPlayers().subscribe(players => this.allPlayers = players);
-    this.socket = socketio('http://localhost:3000');
-
-    let winListener = Observable.fromEvent(this.socket, 'winner');
-    winListener.subscribe(
-      winner => this.endGame(winner));
   }
 
   startGame(event: Event) {
@@ -91,17 +87,29 @@ export class GamestartComponent {
   sendMove(event: Event, columnNumber: number) {
     event.preventDefault();
     event.stopPropagation();
-    this.socket.emit('movemade', columnNumber);
     this.gameplayService.sendMove(columnNumber)
       .mergeMap(moveResponse => this.getGameplay(this.currentGameplay._id))
       .subscribe(gameplayResponse => {
         this.currentGameplay = gameplayResponse;
         this.gameGrid = gameplayResponse.gameGrid;
+        this.winner = gameplayResponse.winner;
+        if (gameplayResponse.winner === 'green') {
+          this.gameInPlay.winner = this.gameInPlay.playerGreen;
+          this.winnerName = this.player1.username;
+        }
+        if (gameplayResponse.winner === 'grey') {
+          this.gameInPlay.winner = this.gameInPlay.playerGrey;
+          this.winnerName = this.player2.username;
+        }
+        if (gameplayResponse.winner === 'tie') {
+          this.gameInPlay.winner = 'tie';
+          this.winnerName = 'Tie Game'
+        }
       });
   }
 
-  endGame(winner: any) {
-    alert(`Congratulations ${winner}!`);
+  endGame(event: Event) {
+    event.preventDefault();
     this.newGame = null;
     this.player1 = null;
     this.player2 = null;
@@ -109,6 +117,7 @@ export class GamestartComponent {
     this.showPlayers2 = false;
     this.showGameBoard = false;
     this.gameInPlay = null;
+    this.winner = 'playing';
     this.currentGameplay = {
       gameGrid: [
         ['empty', 'empty', 'empty', 'empty', 'empty'],
@@ -118,8 +127,10 @@ export class GamestartComponent {
         ['empty', 'empty', 'empty', 'empty', 'empty'],
         ['empty', 'empty', 'empty', 'empty', 'empty'],
         ['empty', 'empty', 'empty', 'empty', 'empty'],
-      ]
+      ],
+      winner: 'playing'
     };
+    this.gameGrid = this.currentGameplay.gameGrid;
   }
 
   private createGame(game: Game) {
@@ -138,7 +149,6 @@ export class GamestartComponent {
       gameGrid: this.currentGameplay.gameGrid
     }
     this.showGameBoard = true;
-    this.socket.emit('newgame', { message: 'A new game has begun!', game: gameResult });
     return this.gameplayService.addGameplay(newGameplay)
       .map(gamePlayResult => gamePlayResult);
   }

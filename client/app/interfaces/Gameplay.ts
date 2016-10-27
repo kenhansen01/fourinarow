@@ -9,4 +9,5 @@ export interface Gameplay {
   playerGreenMoves?: PlayerMove[];
   playerGreyMoves?: PlayerMove[];
   gameGrid?: string[][];
+  winner?: string;
 }

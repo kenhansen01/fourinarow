@@ -2,6 +2,9 @@
 import * as socketio from 'socket.io-client';
 import { MongoUtils } from '../db';
 
+import { Gameplay } from '../client/app/interfaces/Gameplay';
+import { Game } from '../client/app/interfaces/Game';
+
 const socket = socketio('http://localhost:3000');
 
 const router = express.Router();
@@ -9,20 +12,24 @@ const router = express.Router();
 // Connect to database, use gameplay Collection
 const db = new MongoUtils('dbsConnectFour', 'gameplay', 'mongodb://localhost:27017/');
 
-let gameId: string = '';
-let gameplayId: string = '';
-let greenMoves: { x: number, y: number }[] = [];
-let greyMoves: { x: number, y: number }[] = [];
-let moveCount: number = 0;
-let grid = [
-  ['empty', 'empty', 'empty', 'empty', 'empty'],
-  ['empty', 'empty', 'empty', 'empty', 'empty'],
-  ['empty', 'empty', 'empty', 'empty', 'empty'],
-  ['empty', 'empty', 'empty', 'empty', 'empty'],
-  ['empty', 'empty', 'empty', 'empty', 'empty'],
-  ['empty', 'empty', 'empty', 'empty', 'empty'],
-  ['empty', 'empty', 'empty', 'empty', 'empty'],
-];
+let currentGameplay: Gameplay = {
+  _id: '',
+  game: '',
+  playerGreenMoves: [],
+  playerGreyMoves: [],
+  winner: 'playing',
+  gameGrid: [
+    ['empty', 'empty', 'empty', 'empty', 'empty'],
+    ['empty', 'empty', 'empty', 'empty', 'empty'],
+    ['empty', 'empty', 'empty', 'empty', 'empty'],
+    ['empty', 'empty', 'empty', 'empty', 'empty'],
+    ['empty', 'empty', 'empty', 'empty', 'empty'],
+    ['empty', 'empty', 'empty', 'empty', 'empty'],
+    ['empty', 'empty', 'empty', 'empty', 'empty'],
+  ]
+};
+
+let moveCount = 0;
 
 /**
  * Get all gameplays from database
@@ -48,12 +55,12 @@ router.get('/gameplay/:id', (req, res, next) =>
  * Save new gameplay to database
  */
 router.post('/gameplay', (req, res, next) => {
-  gameId = req.body.game;
+  currentGameplay.game = req.body.game;
   db.saveItem(req.body)
     .subscribe(
     saveRes => {
-      gameplayId = saveRes.insertedId.toHexString();
-      res.json({ _id: gameplayId });
+      currentGameplay._id = saveRes.insertedId.toHexString();
+      res.json({ _id: currentGameplay._id });
     },
     err => res.send(err))
 });
@@ -61,7 +68,11 @@ router.post('/gameplay', (req, res, next) => {
 /**
  * Delete gameplay from database
  */
-router.delete('/gameplay/:id', (req, res, next) => db.deleteItemById(req.params.id).subscribe(deleteRes => res.json(deleteRes), err => res.send(err)));
+router.delete('/gameplay/:id', (req, res, next) => db.deleteItemById(req.params.id)
+  .subscribe(
+  deleteRes => res.json(deleteRes),
+  err => res.send(err))
+);
 
 /**
  * Update an existing gameplay in database
@@ -69,12 +80,13 @@ router.delete('/gameplay/:id', (req, res, next) => db.deleteItemById(req.params.
 router.put('/gameplay/move', (req, res, next) => {
   moveMade(req.body.columnNumber);
   let gameplay = {
-    game: gameId,
-    playerGreenMoves: greenMoves,
-    playerGreyMoves: greyMoves,
-    gameGrid: grid
+    game: currentGameplay.game,
+    playerGreenMoves: currentGameplay.playerGreenMoves,
+    playerGreyMoves: currentGameplay.playerGreyMoves,
+    gameGrid: currentGameplay.gameGrid,
+    winner: currentGameplay.winner
   };
-  db.updateItem(gameplayId, gameplay)
+  db.updateItem(currentGameplay._id, gameplay)
     .subscribe(
     updateRes => res.json(updateRes),
     err => res.send(err));
@@ -82,14 +94,16 @@ router.put('/gameplay/move', (req, res, next) => {
 
 export = router;
 
-function newGame(gameObject: any) {
-  console.log(gameObject.message);
-  if (gameObject.game._id) {
-    gameId = gameObject.game._id;
-    greenMoves = gameObject.game.playerGreenMoves || [];
-    greyMoves = gameObject.game.playerGreyMoves || [];
-    moveCount = 0;
-    grid = gameObject.game.grid = [
+/**
+ * Sets up a new game object.
+ * @param {Game} gameObject
+ */
+function newGame(gameObject: Game) {
+  if (gameObject._id) {
+    currentGameplay.game = gameObject._id;
+    currentGameplay.playerGreenMoves = [];
+    currentGameplay.playerGreyMoves = [];
+    currentGameplay.gameGrid = [
       ['empty', 'empty', 'empty', 'empty', 'empty'],
       ['empty', 'empty', 'empty', 'empty', 'empty'],
       ['empty', 'empty', 'empty', 'empty', 'empty'],
@@ -98,39 +112,55 @@ function newGame(gameObject: any) {
       ['empty', 'empty', 'empty', 'empty', 'empty'],
       ['empty', 'empty', 'empty', 'empty', 'empty'],
     ];
+    currentGameplay.winner = 'playing';
+    moveCount = 0;
   } else {
     console.log('New game goofed up??? ', gameObject);
   }
 };
 
+/**
+ * Calculates the move, pushes move to the right player and sets the winner.
+ * @param columnNumber
+ */
 function moveMade(columnNumber: number) {
 
   let move = calcMove(columnNumber);
   let moveColor = 'green';
 
   if (moveCount === 0 || moveCount % 2 === 0) {
-    greenMoves.push(move);
+    currentGameplay.playerGreenMoves.push(move);
     moveColor = 'green';
   } else {
-    greyMoves.push(move);
+    currentGameplay.playerGreyMoves.push(move);
     moveColor = 'grey';
   }
-  grid[move.x][move.y] = moveColor;
+  currentGameplay.gameGrid[move.x][move.y] = moveColor;
   moveCount++;
 
   let isWinner = theWinnerIs();
   if (isWinner !== 'playing') {
-    socket.emit('winner', isWinner)
+    currentGameplay.winner = isWinner;
   }
 };
 
+/**
+ * Calculates the move coords based on the column
+ * @param {number} columnNumber calculates the row based on the column passed and the number of moves in this column so far.
+ * @return {MoveObject} move coordinates
+ */
 function calcMove(columnNumber: number) {
   if (moveCount === 0) {
     return { x: columnNumber, y: 4 };
   }
 
-  let allColumnMoves = greyMoves.length > 0 ? greenMoves.filter(move => move.x === columnNumber)
-    .concat(greyMoves.filter(move => move.x === columnNumber)) : greenMoves.filter(move => move.x === columnNumber);
+  let allColumnMoves = currentGameplay.playerGreyMoves.length > 0 ?
+    currentGameplay.playerGreenMoves
+      .filter(move => move.x === columnNumber)
+      .concat(currentGameplay.playerGreyMoves
+        .filter(move => move.x === columnNumber)) :
+    currentGameplay.playerGreenMoves
+      .filter(move => move.x === columnNumber);
 
   let row = 0;
   switch (allColumnMoves.length) {
@@ -157,15 +187,9 @@ function calcMove(columnNumber: number) {
 }
 
 function theWinnerIs() {
-  if (greenMoves.length < 4) {
+  if (currentGameplay.playerGreenMoves.length < 4) {
     return 'playing';
   }
-  if (greenMoves.length + greyMoves.length === 35) {
-    return 'tie'
-  }
-
-  //greenMoves.forEach(move => grid[move.x][move.y] = 'Green')
-  //greyMoves.forEach(move => grid[move.x][move.y] = 'Grey')
 
   let chipInnaRowCount = 1;
 
@@ -244,7 +268,7 @@ function theWinnerIs() {
 
   let theWinner = () => {
     let winner = 'playing';
-    grid.some((column, columnidx, colRowArray) => {
+    currentGameplay.gameGrid.some((column, columnidx, colRowArray) => {
       return column.some((chip, rowidx, chipColArray) => {
         let checkRowIndex = rowidx;
         let checkColIndex = columnidx;
@@ -260,7 +284,7 @@ function theWinnerIs() {
         ) {
           winner = chip;
           return true;
-        } else if (greenMoves.length + greyMoves.length === 35) {
+        } else if (currentGameplay.playerGreenMoves.length + currentGameplay.playerGreyMoves.length === 35) {
           winner = 'tie';
           return true;
         }
