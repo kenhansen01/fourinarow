@@ -54,7 +54,8 @@ router.put('/game/:id', (req, res, next) => {
   let game = {
     playerGreen: req.body.playerGreen,
     playerGrey: req.body.playerGrey,
-    winner: req.body.winner
+    winner: req.body.winner,
+    createdAt: req.body.createdAt
   };
   db.updateItem(req.body._id, game)
     .subscribe(

@@ -37,17 +37,11 @@ export class GameService {
   }
 
   updateWinner(game: Game) {
-    let updGame: Game = {
-      playerGreen: game.playerGreen,
-      playerGrey: game.playerGrey,
-      winner: game.winner,
-      createdAt: game.createdAt
-    }
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     return this.http.request(`/api/game/${game._id}`, {
       method: 'PUT',
-      body: updGame,
+      body: game,
       headers: headers
     })
       .map(res => res);

@@ -107,7 +107,7 @@ export class GamestartComponent {
           this.winnerName = 'Tie Game'
         }
         if (gameplayResponse.winner !== 'playing') {
-          this.gameService.updateWinner(this.gameInPlay).subscribe();
+          this.setGameWinner(this.gameInPlay);
         }
       });
   }
@@ -168,6 +168,11 @@ export class GamestartComponent {
   private getGameplay(gameplayId: string) {
     return this.gameplayService.getOneGameplay(gameplayId)
       .map(gameplayRes => gameplayRes);
+  }
+
+  private setGameWinner(gameObject: Game) {
+    this.gameService.updateWinner(gameObject)
+      .subscribe();
   }
 
 }
