@@ -1,5 +1,8 @@
 ﻿import express = require('express');
+import * as socketio from 'socket.io-client';
 import { MongoUtils } from '../db';
+
+const socket = socketio('http://localhost:3000');
 
 const router = express.Router();
 // Connect to database, use games Collection

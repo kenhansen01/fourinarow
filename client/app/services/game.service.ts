@@ -28,8 +28,7 @@ export class GameService {
       body: newGame,
       headers: headers
     })
-      .map(
-      (res) => res.json());
+      .map(res => res.json());
   }
 
   cancelGame(id: string) {

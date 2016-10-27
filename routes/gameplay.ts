@@ -10,54 +10,150 @@ const router = express.Router();
 const db = new MongoUtils('dbsConnectFour', 'gameplay', 'mongodb://localhost:27017/');
 
 let gameId: string = '';
+let gameplayId: string = '';
 let greenMoves: { x: number, y: number }[] = [];
 let greyMoves: { x: number, y: number }[] = [];
 let moveCount: number = 0;
+let grid = [
+  ['empty', 'empty', 'empty', 'empty', 'empty'],
+  ['empty', 'empty', 'empty', 'empty', 'empty'],
+  ['empty', 'empty', 'empty', 'empty', 'empty'],
+  ['empty', 'empty', 'empty', 'empty', 'empty'],
+  ['empty', 'empty', 'empty', 'empty', 'empty'],
+  ['empty', 'empty', 'empty', 'empty', 'empty'],
+  ['empty', 'empty', 'empty', 'empty', 'empty'],
+];
 
-socket.on('newgame', (gameObject: any) => {
+/**
+ * Get all gameplays from database
+ */
+router.get('/gameplays', (req, res, next) =>
+  db.getAll()
+    .subscribe(
+    gameplaysResponse => res.json(gameplaysResponse),
+    err => res.send(err))
+);
+
+/**
+ * Get a specific gameplay by id
+ */
+router.get('/gameplay/:id', (req, res, next) =>
+  db.getOneById(req.params.id)
+    .subscribe(
+    gameplayResponse => res.json(gameplayResponse),
+    err => res.send(err))
+);
+
+/**
+ * Save new gameplay to database
+ */
+router.post('/gameplay', (req, res, next) => {
+  gameId = req.body.game;
+  db.saveItem(req.body)
+    .subscribe(
+    saveRes => {
+      gameplayId = saveRes.insertedId.toHexString();
+      res.json({ _id: gameplayId });
+    },
+    err => res.send(err))
+});
+
+/**
+ * Delete gameplay from database
+ */
+router.delete('/gameplay/:id', (req, res, next) => db.deleteItemById(req.params.id).subscribe(deleteRes => res.json(deleteRes), err => res.send(err)));
+
+/**
+ * Update an existing gameplay in database
+ */
+router.put('/gameplay/move', (req, res, next) => {
+  moveMade(req.body.columnNumber);
+  let gameplay = {
+    game: gameId,
+    playerGreenMoves: greenMoves,
+    playerGreyMoves: greyMoves,
+    gameGrid: grid
+  };
+  db.updateItem(gameplayId, gameplay)
+    .subscribe(
+    updateRes => res.json(updateRes),
+    err => res.send(err));
+});
+
+export = router;
+
+function newGame(gameObject: any) {
   console.log(gameObject.message);
   if (gameObject.game._id) {
     gameId = gameObject.game._id;
     greenMoves = gameObject.game.playerGreenMoves || [];
     greyMoves = gameObject.game.playerGreyMoves || [];
     moveCount = 0;
+    grid = gameObject.game.grid = [
+      ['empty', 'empty', 'empty', 'empty', 'empty'],
+      ['empty', 'empty', 'empty', 'empty', 'empty'],
+      ['empty', 'empty', 'empty', 'empty', 'empty'],
+      ['empty', 'empty', 'empty', 'empty', 'empty'],
+      ['empty', 'empty', 'empty', 'empty', 'empty'],
+      ['empty', 'empty', 'empty', 'empty', 'empty'],
+      ['empty', 'empty', 'empty', 'empty', 'empty'],
+    ];
   } else {
     console.log('New game goofed up??? ', gameObject);
   }
-});
+};
 
-socket.on('movemade', (columnNumber: number) => {
+function moveMade(columnNumber: number) {
 
   let move = calcMove(columnNumber);
+  let moveColor = 'green';
 
   if (moveCount === 0 || moveCount % 2 === 0) {
-    greenMoves.push(move)
+    greenMoves.push(move);
+    moveColor = 'green';
   } else {
     greyMoves.push(move);
+    moveColor = 'grey';
   }
+  grid[move.x][move.y] = moveColor;
+  moveCount++;
+
   let isWinner = theWinnerIs();
   if (isWinner !== 'playing') {
-    if (isWinner === 'tie') {
-      socket.emit('tie');
-    } else {
-      socket.emit('winner', isWinner)
-    }
+    socket.emit('winner', isWinner)
   }
-});
+};
 
 function calcMove(columnNumber: number) {
   if (moveCount === 0) {
-    return { x: columnNumber, y: 0 };
+    return { x: columnNumber, y: 4 };
   }
 
-  let allColumnMoves = greenMoves.filter(move => move.x === columnNumber)
-    .concat(greyMoves.filter(move => move.x === columnNumber));
+  let allColumnMoves = greyMoves.length > 0 ? greenMoves.filter(move => move.x === columnNumber)
+    .concat(greyMoves.filter(move => move.x === columnNumber)) : greenMoves.filter(move => move.x === columnNumber);
 
-  let rowArray = Array.from(allColumnMoves, move => move.y);
+  let row = 0;
+  switch (allColumnMoves.length) {
+    case 0:
+      row = 4;
+      break;
+    case 1:
+      row = 3;
+      break;
+    case 2:
+      row = 2;
+      break;
+    case 3:
+      row = 1;
+      break;
+    case 4:
+      row = 0;
+      break;
+    default:
+      break;
+  };
 
-  let highestRow = Math.max.apply(Math, rowArray);
-
-  return { x: columnNumber, y: highestRow++ };
+  return { x: columnNumber, y: row };
 }
 
 function theWinnerIs() {
@@ -67,18 +163,9 @@ function theWinnerIs() {
   if (greenMoves.length + greyMoves.length === 35) {
     return 'tie'
   }
-  let grid = [
-    ['empty', 'empty', 'empty', 'empty', 'empty'],
-    ['empty', 'empty', 'empty', 'empty', 'empty'],
-    ['empty', 'empty', 'empty', 'empty', 'empty'],
-    ['empty', 'empty', 'empty', 'empty', 'empty'],
-    ['empty', 'empty', 'empty', 'empty', 'empty'],
-    ['empty', 'empty', 'empty', 'empty', 'empty'],
-    ['empty', 'empty', 'empty', 'empty', 'empty'],
-  ];
 
-  greenMoves.forEach(move => grid[move.x][move.y] = 'Green')
-  greyMoves.forEach(move => grid[move.x][move.y] = 'Grey')
+  //greenMoves.forEach(move => grid[move.x][move.y] = 'Green')
+  //greyMoves.forEach(move => grid[move.x][move.y] = 'Grey')
 
   let chipInnaRowCount = 1;
 
@@ -134,6 +221,7 @@ function theWinnerIs() {
     }
     // No win, reset
     chipInnaRowCount = 1;
+
     // Diagonal Down
     while (
       colidx + 1 < 7 &&
@@ -153,7 +241,7 @@ function theWinnerIs() {
     chipInnaRowCount = 1;
     return false;
   }
-  
+
   let theWinner = () => {
     let winner = 'playing';
     grid.some((column, columnidx, colRowArray) => {
@@ -172,59 +260,14 @@ function theWinnerIs() {
         ) {
           winner = chip;
           return true;
+        } else if (greenMoves.length + greyMoves.length === 35) {
+          winner = 'tie';
+          return true;
         }
-        return false;          
+        return false;
       })
     })
     return winner;
   }
   return theWinner();
 }
-
-/**
- * Get all gameplays from database
- */
-router.get('/gameplays', (req, res, next) => {
-  db.getAll().subscribe(gameplaysResponse => res.json(gameplaysResponse), err => res.send(err));
-});
-
-/**
- * Get a specific gameplay by id
- */
-router.get('/gameplay/:id', (req, res, next) => {
-  db.getOneById(req.params.id).subscribe(gameplayResponse => res.json(gameplayResponse), err => res.send(err));
-});
-
-/**
- * Save new gameplay to database
- */
-router.post('/gameplay', (req, res, next) => {
-  db.saveItem(req.body)
-    .subscribe(saveRes =>
-      res.json(saveRes),
-      err => res.send(err));
-});
-
-/**
- * Delete gameplay from database
- */
-router.delete('/gameplay/:id', (req, res, next) => db.deleteItemById(req.params.id).subscribe(deleteRes => res.json(deleteRes), err => res.send(err)));
-
-/**
- * Update an existing gameplay in database
- */
-router.put('/gameplay/:id', (req, res, next) => {
-  socket.on('playmove', (data: number) => {
-
-  });
-
-  let greenMoves = req.body.playerGreenMoves || [];
-  let greyMoves = req.body.playerGreyMoves || [];
-  let gameplay = {
-    playerGreenMoves: req.body.playerGreenMoves,
-    playerGreyMoves: req.body.playerGreyMoves,
-  };
-  db.updateItem(req.body._id, gameplay).subscribe(updateRes => res.json(updateRes), err => res.send(err));
-});
-
-export = router;

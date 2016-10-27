@@ -3,40 +3,46 @@ import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import { Player } from '../interfaces/Player';
+import { Gameplay } from '../interfaces/Gameplay';
 
 @Injectable()
-export class PlayerService {
+export class GameplayService {
   constructor(private http: Http) {
     console.log('Task service initialized')
   }
 
-  getPlayers() {
-    return this.http.get('/api/players')
+  getGameplay() {
+    return this.http.get('/api/gameplays')
       .map(res => res.json());
   }
 
-  addPlayer(newPlayer: Player) {
+  getOneGameplay(id: string) {
+    return this.http.get(`/api/gameplay/${id}`)
+      .map(res => res.json());
+  }
+
+  addGameplay(newGameplay: Gameplay) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.request('/api/player', {
+    return this.http.request('/api/gameplay', {
       method: 'POST',
-      body: newPlayer,
+      body: newGameplay,
       headers: headers
     })
-      .map(res => res);
-  }
-
-  deletePlayer(id: string) {
-    return this.http.delete(`/api/player/${id}`)
       .map(res => res.json());
   }
 
-  updateStatus(player: Player) {
+  deleteGameplay(id: string) {
+    return this.http.delete(`/api/gameplay/${id}`)
+      .map(res => res.json());
+  }
+
+  sendMove(column: number) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.request(`/api/player/${player._id}`, {
+    return this.http.request(`/api/gameplay/move`, {
       method: 'PUT',
-      body: player,
+      body: { columnNumber: column },
       headers: headers
     })
       .map(res => res);

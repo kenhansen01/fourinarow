@@ -2,7 +2,7 @@
 import { RouterModule } from '@angular/router';
 
 import { SignupComponent } from './components/signup/signup.component';
-import { GameplayComponent } from './components/gameplay/gameplay.component';
+//import { GameplayComponent } from './components/gameplay/gameplay.component';
 import { GamestartComponent } from './components/gamestart/gamestart.component';
 
 @NgModule({
@@ -10,7 +10,7 @@ import { GamestartComponent } from './components/gamestart/gamestart.component';
     RouterModule.forRoot([
       { path: '', redirectTo: '/signup', pathMatch: 'full' },
       { path: 'signup', component: SignupComponent },
-      { path: 'gameplay', component: GameplayComponent },
+      //{ path: 'gameplay', component: GameplayComponent },
       { path: 'gamestart', component: GamestartComponent }
     ])
   ],

@@ -38,7 +38,15 @@
   </div>
 </div>-->
 <div id="board" class="board-ui-container">
+  <div *ngIf="showGameBoard">
+    <div *ngFor="let column of gameGrid; let index = index" class="board-column">
+      <div *ngFor="let cell of column" class="board-cell" [ngClass]="setCellClass(cell)"></div>      
+    </div>
+    <div *ngFor="let column of gameGrid; let i=index" class="board-column  selector">
+      <button type="button" class="board-cell" (click)="sendMove($event, i)">{{ i }}</button>
+    </div>
+  </div>
   <!--<a href="" class="win-link" data-win-color="blue" id="green_win">Green Win</a>
   <a href="" class="win-link" data-win-color="gray" id="gray_win">Gray Win</a>-->
-  <a href="" class="win-link" data-win-color="tie" id="tie_win" (click)="startGame($event)">Start Game</a>
+  <a *ngIf="!showGameBoard" href="" class="win-link" data-win-color="tie" id="tie_win" (click)="startGame($event)">Start Game</a>
 </div>
