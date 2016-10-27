@@ -1,7 +1,6 @@
 ﻿import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import { join } from 'path';
-import * as socketio from 'socket.io';
 
 import * as index from './routes/index';
 import * as player from './routes/player';
@@ -11,10 +10,6 @@ import * as gameplay from './routes/gameplay';
 const port = 3000;
 
 const app = express();
-
-const io = socketio.listen(app.listen(port, () => {
-  console.log(`Server started on port ${port}`)
-}));
 
 // View Engine
 app.set('views', join(__dirname, 'views'));
@@ -33,12 +28,6 @@ app.use('/api', player);
 app.use('/api', game);
 app.use('/api', gameplay);
 
-io.sockets.on('connection', (socket) => {
-  console.log('client connect');
-  socket.on('send', (data: any) => {
-    io.sockets.emit('message', data);
-  });
+app.listen(port, () => {
+  console.log(`Server started on port ${port}`)
 })
-//app.listen(port, () => {
-//  console.log(`Server started on port ${port}`)
-//})

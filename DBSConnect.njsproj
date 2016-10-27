@@ -40,7 +40,6 @@
     <Content Include="client\app\components\signup\images\plea.svg" />
     <Content Include="client\app\components\signup\images\tableau_logo.png" />
     <Content Include="client\app\components\signup\signup.component.html" />
-    <Content Include="client\app\components\tasks\tasks.component.html" />
     <Content Include="client\css\fonts\OpenSans\OpenSans-Bold-webfont.eot" />
     <Content Include="client\css\fonts\OpenSans\OpenSans-Bold-webfont.svg" />
     <Content Include="client\css\fonts\OpenSans\OpenSans-Bold-webfont.ttf" />
@@ -101,7 +100,6 @@
     <Folder Include="client\app\components\signup\" />
     <Folder Include="client\app\components\signup\css\" />
     <Folder Include="client\app\components\signup\images\" />
-    <Folder Include="client\app\components\tasks\" />
     <Folder Include="client\app\interfaces\" />
     <Folder Include="client\css\fonts\" />
     <Folder Include="client\app\services\" />
@@ -113,12 +111,8 @@
     <Folder Include="data\db\journal" />
     <Folder Include="data\logs" />
     <Folder Include="client\" />
-    <Folder Include="utilities\" />
     <Folder Include="views\" />
     <Folder Include="routes\" />
-    <Folder Include="typings\" />
-    <Folder Include="typings\globals\" />
-    <Folder Include="typings\globals\node\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="client\app\app.component.ts" />
@@ -142,8 +136,6 @@
     <TypeScriptCompile Include="routes\game.ts" />
     <TypeScriptCompile Include="routes\player.ts" />
     <TypeScriptCompile Include="server.ts" />
-    <TypeScriptCompile Include="testapp.ts" />
-    <TypeScriptCompile Include="typings\globals\node\index.d.ts" />
     <TypeScriptCompile Include="typings\index.d.ts" />
     <TypeScriptCompile Include="utilities\curry.ts" />
   </ItemGroup>

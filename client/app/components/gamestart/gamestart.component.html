@@ -26,17 +26,6 @@
     </div>
   </div>
 </div>
-
-<!--<div id="interface" class="board-ui-container green-gradient">
-
-  <a href="#" class="player-color" data-player-color="blue" id="player_1_color"></a>
-  <a href="#" class="player-color" data-player-color="gray" id="player_2_color"></a>
-
-  <div id="end_game">
-    <a href="#" id="end_game_link">&times;</a>
-    End Game
-  </div>
-</div>-->
 <div id="board" class="board-ui-container">
   <div *ngIf="showGameBoard && winner === 'playing'">
     <div *ngFor="let column of gameGrid; let index = index" class="board-column">
@@ -46,8 +35,6 @@
       <button type="button" class="board-cell" (click)="sendMove($event, i)">{{ i }}</button>
     </div>
   </div>
-  <!--<a href="" class="win-link" data-win-color="blue" id="green_win">Green Win</a>
-  <a href="" class="win-link" data-win-color="gray" id="gray_win">Gray Win</a>-->
   <a *ngIf="!showGameBoard" href="" class="win-link" data-win-color="tie" id="tie_win" (click)="startGame($event)">Start Game</a>
   <a *ngIf="winner !== 'playing'" href="" class="win-link" data-win-color="tie" id="tie_win" (click)="endGame($event)">Game Winner: {{winnerName}}! Ready A New Game</a>
 </div>

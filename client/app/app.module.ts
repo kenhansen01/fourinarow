@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { SignupComponent } from './components/signup/signup.component';
-//import { GameplayComponent } from './components/gameplay/gameplay.component';
 import { GamestartComponent } from './components/gamestart/gamestart.component';
 
 @NgModule({
@@ -20,7 +19,6 @@ import { GamestartComponent } from './components/gamestart/gamestart.component';
   declarations: [
     AppComponent,
     SignupComponent,
-    //GameplayComponent,
     GamestartComponent
   ],
   bootstrap: [AppComponent]

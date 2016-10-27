@@ -1,5 +1,4 @@
 ﻿import { Component } from '@angular/core';
-import * as socketio from 'socket.io-client';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/mergeMap';
 
@@ -10,8 +9,6 @@ import { GameplayService } from '../../services/gameplay.service';
 import { Player } from '../../interfaces/Player';
 import { Game } from '../../interfaces/Game';
 import { Gameplay } from '../../interfaces/Gameplay';
-
-//const socket = socketio('http://localhost:3000');
 
 @Component({
   moduleId: module.id,

@@ -10,19 +10,19 @@
   "repository": "https://github.com/kenhansen01/fourinarow",
   "license": "ISC",
   "devDependencies": {
-    "@types/body-parser": "0.0.33",
-    "@types/ejs": "^2.3.31",
-    "@types/express": "^4.0.32",
-    "@types/mongodb": "^2.1.33",
-    "@types/node": "^6.0.38",
-    "@types/socket.io": "^1.4.4",
-    "@types/socket.io-client": "^1.4.4",
     "@types/async": "^2.0.31",
+    "@types/body-parser": "0.0.33",
     "@types/browser-sync": "^0.0.32",
     "@types/connect-livereload": "^0.5.29",
     "@types/core-js": "^0.9.32",
+    "@types/ejs": "^2.3.31",
+    "@types/express": "^4.0.32",
     "@types/jasmine": "^2.2.33",
+    "@types/mongodb": "^2.1.33",
+    "@types/node": "^6.0.38",
     "@types/protractor": "^1.5.18",
+    "@types/socket.io": "^1.4.4",
+    "@types/socket.io-client": "^1.4.4",
     "@types/systemjs": "^0.19.30",
     "@types/zone.js": "^0.0.26",
     "codelyzer": "~1.0.0-beta.2",
@@ -34,8 +34,6 @@
     "ejs": "^2.5.2",
     "express": "^4.14.0",
     "mongodb": "^2.2.10",
-    "rxjs": "^5.0.0-rc.1",
-    "socket.io": "^1.5.0",
-    "socket.io-client": "^1.5.0"
+    "rxjs": "^5.0.0-rc.1"
   }
 }

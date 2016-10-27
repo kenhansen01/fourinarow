@@ -1,11 +1,8 @@
 ﻿import express = require('express');
-import * as socketio from 'socket.io-client';
 import { MongoUtils } from '../db';
 
 import { Gameplay } from '../client/app/interfaces/Gameplay';
 import { Game } from '../client/app/interfaces/Game';
-
-const socket = socketio('http://localhost:3000');
 
 const router = express.Router();
 
