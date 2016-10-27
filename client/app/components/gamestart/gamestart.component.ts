@@ -130,7 +130,15 @@ export class GamestartComponent {
       ],
       winner: 'playing'
     };
-    this.gameGrid = this.currentGameplay.gameGrid;
+    this.gameGrid = [
+      ['empty', 'empty', 'empty', 'empty', 'empty'],
+      ['empty', 'empty', 'empty', 'empty', 'empty'],
+      ['empty', 'empty', 'empty', 'empty', 'empty'],
+      ['empty', 'empty', 'empty', 'empty', 'empty'],
+      ['empty', 'empty', 'empty', 'empty', 'empty'],
+      ['empty', 'empty', 'empty', 'empty', 'empty'],
+      ['empty', 'empty', 'empty', 'empty', 'empty'],
+    ];
   }
 
   private createGame(game: Game) {

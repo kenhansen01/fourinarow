@@ -55,7 +55,7 @@ router.get('/gameplay/:id', (req, res, next) =>
  * Save new gameplay to database
  */
 router.post('/gameplay', (req, res, next) => {
-  currentGameplay.game = req.body.game;
+  newGame(req.body.game);
   db.saveItem(req.body)
     .subscribe(
     saveRes => {
@@ -98,9 +98,9 @@ export = router;
  * Sets up a new game object.
  * @param {Game} gameObject
  */
-function newGame(gameObject: Game) {
-  if (gameObject._id) {
-    currentGameplay.game = gameObject._id;
+function newGame(gameId: string) {
+  if (gameId) {
+    currentGameplay.game = gameId;
     currentGameplay.playerGreenMoves = [];
     currentGameplay.playerGreyMoves = [];
     currentGameplay.gameGrid = [
@@ -115,7 +115,7 @@ function newGame(gameObject: Game) {
     currentGameplay.winner = 'playing';
     moveCount = 0;
   } else {
-    console.log('New game goofed up??? ', gameObject);
+    console.log('New game goofed up??? ', gameId);
   }
 };
 
