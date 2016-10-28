@@ -5,6 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "tsc && cd client && tsc && cd ..",
+    "postinstall": "cd client && npm install && cd ..",
     "tslint": "tslint **/*.ts --exclude node_modules/**/*.* --exclude client/node_modules/**/*.* --exclude **/*.d.ts"
   },
   "author": "k.e.hansen01@gmail.com",
@@ -35,6 +37,7 @@
     "ejs": "^2.5.2",
     "express": "^4.14.0",
     "mongodb": "^2.2.10",
+    "socket.io": "^1.5.1",
     "rxjs": "^5.0.0-rc.1"
   }
 }

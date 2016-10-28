@@ -94,6 +94,7 @@
   <ItemGroup>
     <Folder Include="client\app\" />
     <Folder Include="client\app\components\" />
+    <Folder Include="client\app\components\gameplay\" />
     <Folder Include="client\app\components\gamestart\" />
     <Folder Include="client\app\components\gamestart\css\" />
     <Folder Include="client\app\components\signup\" />
@@ -136,7 +137,7 @@
     <TypeScriptCompile Include="routes\player.ts" />
     <TypeScriptCompile Include="server.ts" />
     <TypeScriptCompile Include="typings\index.d.ts" />
-    <TypeScriptCompile Include="utilities\curry.ts" />
+    <TypeScriptCompile Include="utilities\gameplay.utilities.ts" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="client\systemjs.config.ts" />

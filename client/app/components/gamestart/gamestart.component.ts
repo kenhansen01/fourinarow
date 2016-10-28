@@ -1,4 +1,6 @@
 ﻿import { Component } from '@angular/core';
+import * as socketio from 'socket.io-client';
+import { Observable } from 'rxjs/Rx'
 import 'rxjs/add/operator/mergeMap';
 
 import { PlayerService } from '../../services/player.service';
@@ -16,7 +18,7 @@ import { Gameplay } from '../../interfaces/Gameplay';
 })
 
 export class GamestartComponent {
-
+  socket: SocketIOClient.Socket;
   allPlayers: Player[];
   newGame: Game;
   gameInPlay: Game;
@@ -49,6 +51,31 @@ export class GamestartComponent {
     private gameplayService: GameplayService
   ) {
     this.playerService.getPlayers().subscribe(players => this.allPlayers = players);
+    this.socket = socketio('http://localhost:3000');
+    let moveListener = Observable.fromEvent(this.socket, 'movemade');
+    moveListener
+      .mergeMap(moveResponse =>
+      this.getGameplay(this.currentGameplay._id))
+      .subscribe(gameplayResponse => {
+        this.currentGameplay = gameplayResponse;
+        this.gameGrid = gameplayResponse.gameGrid;
+        this.winner = gameplayResponse.winner;
+        if (gameplayResponse.winner === 'green') {
+          this.gameInPlay.winner = this.gameInPlay.playerGreen;
+          this.winnerName = this.player1.username;
+        }
+        if (gameplayResponse.winner === 'grey') {
+          this.gameInPlay.winner = this.gameInPlay.playerGrey;
+          this.winnerName = this.player2.username;
+        }
+        if (gameplayResponse.winner === 'tie') {
+          this.gameInPlay.winner = 'tie';
+          this.winnerName = 'Tie Game';
+        }
+        if (gameplayResponse.winner !== 'playing') {
+          this.setGameWinner(this.gameInPlay);
+        }
+      });
   }
 
   startGame(event: Event) {
@@ -85,7 +112,8 @@ export class GamestartComponent {
     event.preventDefault();
     event.stopPropagation();
     this.gameplayService.sendMove(columnNumber)
-      .mergeMap(moveResponse => this.getGameplay(this.currentGameplay._id))
+      .mergeMap(moveResponse =>
+        this.getGameplay(this.currentGameplay._id))
       .subscribe(gameplayResponse => {
         this.currentGameplay = gameplayResponse;
         this.gameGrid = gameplayResponse.gameGrid;
