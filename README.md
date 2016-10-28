@@ -10,10 +10,17 @@ You need to have MongoDB (v2.2) installed. There is a mongod.cfg file that will 
 Node v5 or greater, and Typescript 2.0 or greater.
 
 ## A 3rd thing...
-I build with VS2015, so I haven't put together a gulpfile just yet. You can run `tsc && cd client && tsc && cd .. && node server.js` to build and start the server.
+I build with VS2015, so I haven't put together a gulpfile just yet. You can run `npm run tsc && node server.js` to build and start the server.
 
 ### What happens.
 There's a signup at localhost:3000/signup. Enter player info here.
 There's a gamestart at localhost:3000/gamestart. Choose 2 players click start. A game board appears, select the column the chip was dropped in and it fills in a color.
 
-The endpoint localhost:3000/api/gameplay/move will accept an object like this `{ columnNumber: 1 }` from something like a raspberry pi.
+The endpoint localhost:3000/api/gameplay/move will accept an object like this `{ columnNumber: 1 }` from something like a raspberry pi. This is a PUT endpoint...
+
+### Try it out
+Build it & start the server. First go to localhost:3000/signup and add some users (at least 2). In another window go to localhost:3000/gamestart, select player1 and player2, click the big Start Button.
+
+Now the fun bit, either click a button to choose a column or send a PUT request to localhost:3000/api/gameplay/move with the headers `"Content-Type":"application/json"` and a body `{ "columnNumber": 0 }` or any column number from 0-6. You can use postman or something to test this.
+
+Neat!
