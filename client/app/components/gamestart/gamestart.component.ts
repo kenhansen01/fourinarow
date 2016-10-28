@@ -1,5 +1,4 @@
 ﻿import { Component } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/mergeMap';
 
 import { PlayerService } from '../../services/player.service';
@@ -59,7 +58,7 @@ export class GamestartComponent {
       playerGrey: this.player2._id,
       winner: 'playing',
       createdAt: new Date()
-    }
+    };
     this.createGame(this.newGame)
       .mergeMap(newGameId =>
         this.getNewGame(newGameId))
@@ -79,7 +78,7 @@ export class GamestartComponent {
     return {
       green: cellValue === 'green',
       grey: cellValue === 'grey'
-    }
+    };
   }
 
   sendMove(event: Event, columnNumber: number) {
@@ -101,7 +100,7 @@ export class GamestartComponent {
         }
         if (gameplayResponse.winner === 'tie') {
           this.gameInPlay.winner = 'tie';
-          this.winnerName = 'Tie Game'
+          this.winnerName = 'Tie Game';
         }
         if (gameplayResponse.winner !== 'playing') {
           this.setGameWinner(this.gameInPlay);
@@ -156,7 +155,7 @@ export class GamestartComponent {
     let newGameplay: Gameplay = {
       game: gameResult._id,
       gameGrid: this.currentGameplay.gameGrid
-    }
+    };
     this.showGameBoard = true;
     return this.gameplayService.addGameplay(newGameplay)
       .map(gamePlayResult => gamePlayResult);
@@ -171,5 +170,4 @@ export class GamestartComponent {
     this.gameService.updateWinner(gameObject)
       .subscribe();
   }
-
 }

@@ -2,7 +2,6 @@
 import { MongoUtils } from '../db';
 
 import { Gameplay } from '../client/app/interfaces/Gameplay';
-import { Game } from '../client/app/interfaces/Game';
 
 const router = express.Router();
 
@@ -59,7 +58,7 @@ router.post('/gameplay', (req, res, next) => {
       currentGameplay._id = saveRes.insertedId.toHexString();
       res.json({ _id: currentGameplay._id });
     },
-    err => res.send(err))
+    err => res.send(err));
 });
 
 /**
@@ -196,7 +195,7 @@ function theWinnerIs() {
       chip === array[rowidx + 1]
     ) {
       rowidx++;
-      chipInnaRowCount++
+      chipInnaRowCount++;
     }
     // We have a winner
     if (chipInnaRowCount >= 4) {
@@ -205,7 +204,7 @@ function theWinnerIs() {
     // No win, reset
     chipInnaRowCount = 1;
     return false;
-  }
+  };
 
   let colCheck = (chip: string, colidx: number, rowidx: number, array: string[][]) => {
     while (
@@ -222,7 +221,7 @@ function theWinnerIs() {
     // No win, reset
     chipInnaRowCount = 1;
     return false;
-  }
+  };
 
   let diagCheck = (chip: string, colidx: number, rowidx: number, array: string[][]) => {
     // Diagonal Up
@@ -234,7 +233,7 @@ function theWinnerIs() {
     ) {
       colidx++;
       rowidx++;
-      chipInnaRowCount++
+      chipInnaRowCount++;
     }
     // We have a winner
     if (chipInnaRowCount >= 4) {
@@ -252,7 +251,7 @@ function theWinnerIs() {
     ) {
       colidx++;
       rowidx--;
-      chipInnaRowCount++
+      chipInnaRowCount++;
     }
     // We have a winner
     if (chipInnaRowCount >= 4) {
@@ -261,7 +260,7 @@ function theWinnerIs() {
     // No win, reset
     chipInnaRowCount = 1;
     return false;
-  }
+  };
 
   let theWinner = () => {
     let winner = 'playing';
@@ -270,7 +269,7 @@ function theWinnerIs() {
         let checkRowIndex = rowidx;
         let checkColIndex = columnidx;
         // if this is an empty chip
-        if (chip == 'empty') {
+        if (chip === 'empty') {
           winner = winner;
           return false;
         }
@@ -286,9 +285,9 @@ function theWinnerIs() {
           return true;
         }
         return false;
-      })
-    })
+      });
+    });
     return winner;
-  }
+  };
   return theWinner();
 }

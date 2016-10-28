@@ -23,7 +23,6 @@
   <ItemGroup>
     <Content Include=".gitignore" />
     <Content Include="client\app\app.component.html" />
-    <Content Include="client\app\components\gameplay\gameplay.component.html" />
     <Content Include="client\app\components\gamestart\css\structure.css" />
     <Content Include="client\app\components\gamestart\gamestart.component.html" />
     <Content Include="client\app\components\signup\css\animate.css" />
@@ -111,6 +110,8 @@
     <Folder Include="data\db\journal" />
     <Folder Include="data\logs" />
     <Folder Include="client\" />
+    <Folder Include="typings\" />
+    <Folder Include="utilities\" />
     <Folder Include="views\" />
     <Folder Include="routes\" />
   </ItemGroup>
@@ -121,14 +122,12 @@
     <TypeScriptCompile Include="client\app\components\gameplay\gameplay.component.ts" />
     <TypeScriptCompile Include="client\app\components\gamestart\gamestart.component.ts" />
     <TypeScriptCompile Include="client\app\components\signup\signup.component.ts" />
-    <TypeScriptCompile Include="client\app\components\tasks\tasks.component.ts" />
     <TypeScriptCompile Include="client\app\interfaces\Gameplay.ts" />
     <TypeScriptCompile Include="client\app\interfaces\Game.ts" />
     <TypeScriptCompile Include="client\app\main.ts" />
     <TypeScriptCompile Include="client\app\services\game.service.ts" />
     <TypeScriptCompile Include="client\app\services\gameplay.service.ts" />
     <TypeScriptCompile Include="client\app\services\player.service.ts" />
-    <TypeScriptCompile Include="client\app\services\task.service.ts" />
     <TypeScriptCompile Include="client\app\interfaces\Player.ts" />
     <TypeScriptCompile Include="db.ts" />
     <TypeScriptCompile Include="routes\gameplay.ts" />

@@ -7,7 +7,7 @@ import { Game } from '../interfaces/Game';
 @Injectable()
 export class GameService {
   constructor(private http: Http) {
-    console.log('Task service initialized')
+    console.log('Task service initialized');
   }
 
   getGames() {

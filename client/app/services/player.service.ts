@@ -7,7 +7,7 @@ import { Player } from '../interfaces/Player';
 @Injectable()
 export class PlayerService {
   constructor(private http: Http) {
-    console.log('Task service initialized')
+    console.log('Task service initialized');
   }
 
   getPlayers() {

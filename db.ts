@@ -23,24 +23,6 @@ export class MongoUtils {
   }
 
   /**
-   * Connection to database that opens the specified collection
-   * @param {string} dbCollectionName - Name of the collection on the database
-   * @return {Rx.Observable} - Observable of the collection in the db
-   */
-  private connectToDb(dbCollectionName: string): Rx.Observable<any> {
-    return Rx.Observable.fromPromise(MongoClient.connect(this.mongoUrl))
-      .map((db: mongodb.Db) => this.database = db)
-      .map((db: mongodb.Db) => db.collection(dbCollectionName));
-  }
-
-  /**
-   * Closes connection to database.
-   */
-  disconnectFromDb() {
-    this.database.close()
-  }
-
-  /**
    * Gets all the items
    * @return {Rx.Observable} - Observable of all items in db
    */
@@ -93,5 +75,23 @@ export class MongoUtils {
     return this.connectToDb(this.dbColl)
       .mergeMap((collection: mongodb.Collection) =>
         Rx.Observable.fromPromise(collection.updateOne({ _id: new mongodb.ObjectID(id) }, { $set: updatedItem })));
+  }
+
+  /**
+   * Closes connection to database.
+   */
+  disconnectFromDb() {
+    this.database.close();
+  }
+
+  /**
+   * Connection to database that opens the specified collection
+   * @param {string} dbCollectionName - Name of the collection on the database
+   * @return {Rx.Observable} - Observable of the collection in the db
+   */
+  private connectToDb(dbCollectionName: string): Rx.Observable<any> {
+    return Rx.Observable.fromPromise(MongoClient.connect(this.mongoUrl))
+      .map((db: mongodb.Db) => this.database = db)
+      .map((db: mongodb.Db) => db.collection(dbCollectionName));
   }
 };

@@ -5,7 +5,6 @@ import { Player, Gender, Country, JobType, YearsExperience } from '../../interfa
 
 @Component({
   moduleId: module.id,
-  selector: 'signup',
   templateUrl: 'signup.component.html',
   styleUrls: ['css/animate.css', 'css/controls.css', 'css/structure.css']
 })
@@ -60,7 +59,7 @@ export class SignupComponent {
     this.formVisible = true;
     setTimeout(() => {
       this.signupStarted = true;
-    })
+    });
   }
 
   /**
@@ -125,7 +124,7 @@ export class SignupComponent {
       // Send Player to db
       this.playerService.addPlayer(this.player)
         .subscribe(response => {
-          response.ok ? console.log('Player added!') : console.log(`That didn't work!`)
+          response.ok ? console.log('Player added!') : console.log(`That didn't work!`);
 
           console.log(this.player);
 

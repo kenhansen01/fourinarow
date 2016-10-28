@@ -2,13 +2,12 @@
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-import { Player } from '../interfaces/Player';
 import { Gameplay } from '../interfaces/Gameplay';
 
 @Injectable()
 export class GameplayService {
   constructor(private http: Http) {
-    console.log('Task service initialized')
+    console.log('Task service initialized');
   }
 
   getGameplay() {

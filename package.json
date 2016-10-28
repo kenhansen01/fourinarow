@@ -4,7 +4,8 @@
   "description": "Interactive 4 In A Row Application",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tslint": "tslint **/*.ts --exclude node_modules/**/*.* --exclude client/node_modules/**/*.* --exclude **/*.d.ts"
   },
   "author": "k.e.hansen01@gmail.com",
   "repository": "https://github.com/kenhansen01/fourinarow",
