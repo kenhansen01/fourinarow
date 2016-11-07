@@ -6,7 +6,7 @@ let specCount = 0;
 
 let addSpaces = (numberOfSpaces: number) => {
   return Array(numberOfSpaces).join(' ');
-}
+};
 
 const reporter: jasmine.CustomReporter = {
   jasmineStarted: (suiteInfo: jasmine.SuiteInfo) => {
@@ -29,7 +29,7 @@ const reporter: jasmine.CustomReporter = {
     console.log(result.passedExpectations.length);
     specCount--;
   },
-  suiteDone: (result: jasmine.CustomReporterResult) => {    
+  suiteDone: (result: jasmine.CustomReporterResult) => {
     console.log(chalk.bgCyan(`${addSpaces(suiteCount * 2)}Suite: "${result.description}" ${result.status}`));
     result.failedExpectations.forEach((failure) => {
       console.log(chalk.red(`${addSpaces(suiteCount * 2 + 2)}Failure: ${failure.message}`));
@@ -38,8 +38,8 @@ const reporter: jasmine.CustomReporter = {
     suiteCount--;
   },
   jasmineDone: () => {
-    console.log('Finished Suite.')
+    console.log('Finished Suite.');
   }
-}
+};
 
 export = reporter;

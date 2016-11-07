@@ -11,7 +11,7 @@ import { BuildType } from './fourinarow.config.interfaces';
 export const BUILD_TYPES: BuildType = {
   DEVELOPMENT: 'dev',
   PRODUCTION: 'prod'
-}
+};
 
 export class FourinarowConfig {
 

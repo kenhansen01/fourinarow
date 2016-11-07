@@ -34,7 +34,7 @@ const karmaConfig = (config: Karma.Config) => {
     preprocessors: {
     },
 
-    plugins: ['karma-jasmine','karma-chrome-launcher'],
+    plugins: ['karma-jasmine', 'karma-chrome-launcher'],
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
@@ -71,7 +71,7 @@ const karmaConfig = (config: Karma.Config) => {
     // Concurrency level
     // how many browser should be started simultaneous
     //concurrency: Infinity
-  })
-}
+  });
+};
 
 export = karmaConfig;

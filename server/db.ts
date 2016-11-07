@@ -1,5 +1,7 @@
-﻿import mongodb = require('mongodb');
+﻿import * as mongodb from 'mongodb';
 import * as Rx from 'rxjs/Rx';
+
+import Config from '../config/config';
 
 const MongoClient = new mongodb.MongoClient();
 
@@ -7,7 +9,7 @@ const MongoClient = new mongodb.MongoClient();
  * Utility class to access database as Observables
  */
 export class MongoUtils {
-  mongoConnection: string = 'mongodb://localhost:27017/';
+  mongoConnection: string = Config.MONGO_URL;
   mongoDb: string = 'test';
   dbColl: string = 'default';
   mongoUrl: string;
@@ -89,7 +91,7 @@ export class MongoUtils {
    * @param {string} dbCollectionName - Name of the collection on the database
    * @return {Rx.Observable} - Observable of the collection in the db
    */
-  private connectToDb(dbCollectionName: string): Rx.Observable<any> {
+  connectToDb(dbCollectionName: string): Rx.Observable<any> {
     return Rx.Observable.fromPromise(MongoClient.connect(this.mongoUrl))
       .map((db: mongodb.Db) => this.database = db)
       .map((db: mongodb.Db) => db.collection(dbCollectionName));

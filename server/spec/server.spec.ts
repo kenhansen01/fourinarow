@@ -3,7 +3,6 @@ import { Server } from 'http';
 import * as request from 'supertest';
 
 import * as reporter from '../../tools/jasmine.reporter';
-import Config from '../../config/config';
 
 const base_url = '/';
 
@@ -84,9 +83,9 @@ describe('testServer', () => {
         .end((err: any, res: any) => {
           expect(res).toBeTruthy();
           done();
-        })
-    })
-  })
+        });
+    });
+  });
   // TODO get all players
 
   describe('DELETE specific player /api/player/:id', () => {
@@ -94,8 +93,6 @@ describe('testServer', () => {
       request(server)
         .delete(`${base_url}api/player/${testUser._id}`)
         .expect(200, done);
-    })
-  })
- 
+    });
+  });
 });
-

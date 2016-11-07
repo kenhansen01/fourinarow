@@ -115,6 +115,7 @@
     <Folder Include="client\" />
     <Folder Include="config\" />
     <Folder Include="manual-typings\" />
+    <Folder Include="spec\" />
     <Folder Include="tools\" />
     <Folder Include="server\" />
     <Folder Include="server\spec\" />
@@ -128,7 +129,6 @@
     <TypeScriptCompile Include="client\app\app.component.ts" />
     <TypeScriptCompile Include="client\app\app-routing.module.ts" />
     <TypeScriptCompile Include="client\app\app.module.ts" />
-    <TypeScriptCompile Include="client\app\components\gameplay\gameplay.component.ts" />
     <TypeScriptCompile Include="client\app\components\gamestart\gamestart.component.ts" />
     <TypeScriptCompile Include="client\app\components\signup\signup.component.ts" />
     <TypeScriptCompile Include="client\app\interfaces\Gameplay.ts" />
@@ -149,6 +149,7 @@
     <TypeScriptCompile Include="server\routes\game.ts" />
     <TypeScriptCompile Include="server\routes\player.ts" />
     <TypeScriptCompile Include="server\routes\routes.ts" />
+    <TypeScriptCompile Include="server\spec\db.spec.ts" />
     <TypeScriptCompile Include="server\spec\server.spec.ts" />
     <TypeScriptCompile Include="server\server.ts" />
     <TypeScriptCompile Include="tools\jasmine.reporter.ts" />

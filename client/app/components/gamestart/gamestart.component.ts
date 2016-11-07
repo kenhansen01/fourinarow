@@ -1,6 +1,6 @@
 ﻿import { Component } from '@angular/core';
 import * as socketio from 'socket.io-client';
-import { Observable } from 'rxjs/Rx'
+import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/mergeMap';
 
 import { PlayerService } from '../../services/player.service';

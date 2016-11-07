@@ -4,14 +4,16 @@
   "description": "Interactive 4 In A Row Application",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "pretest": "npm run tslint && npm run tsc",
+    "test": "npm run test-server",
+    "posttest": "",
     "tsc": "tsc && cd client && tsc && cd ..",
     "postinstall": "cd client && npm install && cd ..",
     "tslint": "tslint **/*.ts --exclude node_modules/**/*.* --exclude client/node_modules/**/*.* --exclude **/*.d.ts",
     "test-server": "jasmine JASMINE_CONFIG_PATH=config/jasmine.json"
   },
   "author": "k.e.hansen01@gmail.com",
-  "repository": "https://github.com/kenhansen01/fourinarow",
+  "repository": "git://github.com/kenhansen01/fourinarow",
   "license": "ISC",
   "devDependencies": {
     "@types/async": "^2.0.31",
