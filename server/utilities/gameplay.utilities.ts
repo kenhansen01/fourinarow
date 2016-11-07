@@ -1,4 +1,4 @@
-﻿import { Gameplay } from '../client/app/interfaces/Gameplay';
+﻿import { Gameplay } from '../../client/app/interfaces/Gameplay';
 
 export class GameplayUtils {
   gameplayObject: Gameplay = {};

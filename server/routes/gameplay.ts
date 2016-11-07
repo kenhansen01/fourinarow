@@ -1,14 +1,17 @@
-﻿import express = require('express');
+﻿/// <reference path="../server.ts" />
+import express = require('express');
 import { MongoUtils } from '../db';
 
 import { GameplayUtils } from '../utilities/gameplay.utilities';
-import { Gameplay } from '../client/app/interfaces/Gameplay';
+import { Gameplay } from '../../client/app/interfaces/Gameplay';
+
+import Config from '../../config/config';
 
 const router = express.Router();
 const gameplay = new GameplayUtils();
 
 // Connect to database, use gameplay Collection
-const db = new MongoUtils('dbsConnectFour', 'gameplay', 'mongodb://localhost:27017/');
+const db = new MongoUtils('dbsConnectFour', 'gameplay', Config.MONGO_URL);
 
 let currentGameplay: Gameplay = gameplay.newGame();
 

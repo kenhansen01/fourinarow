@@ -6,7 +6,7 @@
     <ProjectGuid>{a721b7c0-1712-4710-aeee-84b30b663c35}</ProjectGuid>
     <ProjectHome />
     <ProjectView>ShowAllFiles</ProjectView>
-    <StartupFile>server.js</StartupFile>
+    <StartupFile>server\server.js</StartupFile>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
@@ -83,13 +83,15 @@
     <Content Include="client\css\styles.css" />
     <Content Include="client\package.json" />
     <Content Include="client\tsconfig.json" />
+    <Content Include="config\jasmine.json" />
     <Content Include="data\logs\mongod.log" />
     <Content Include="mongod.cfg" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <Content Include="spec\support\jasmine.json.txt" />
     <Content Include="tslint.json" />
     <Content Include="tsconfig.json" />
-    <Content Include="views\index.html" />
+    <Content Include="server\views\index.html" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="client\app\" />
@@ -111,10 +113,16 @@
     <Folder Include="data\db\journal" />
     <Folder Include="data\logs" />
     <Folder Include="client\" />
-    <Folder Include="typings\" />
-    <Folder Include="utilities\" />
-    <Folder Include="views\" />
-    <Folder Include="routes\" />
+    <Folder Include="config\" />
+    <Folder Include="manual-typings\" />
+    <Folder Include="tools\" />
+    <Folder Include="server\" />
+    <Folder Include="server\spec\" />
+    <Folder Include="spec\support\" />
+    <Folder Include="manual typings\" />
+    <Folder Include="server\utilities\" />
+    <Folder Include="server\views\" />
+    <Folder Include="server\routes\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="client\app\app.component.ts" />
@@ -130,14 +138,21 @@
     <TypeScriptCompile Include="client\app\services\gameplay.service.ts" />
     <TypeScriptCompile Include="client\app\services\player.service.ts" />
     <TypeScriptCompile Include="client\app\interfaces\Player.ts" />
-    <TypeScriptCompile Include="db.ts" />
-    <TypeScriptCompile Include="routes\gameplay.ts" />
-    <TypeScriptCompile Include="routes\index.ts" />
-    <TypeScriptCompile Include="routes\game.ts" />
-    <TypeScriptCompile Include="routes\player.ts" />
-    <TypeScriptCompile Include="server.ts" />
-    <TypeScriptCompile Include="typings\index.d.ts" />
-    <TypeScriptCompile Include="utilities\gameplay.utilities.ts" />
+    <TypeScriptCompile Include="config\config.ts" />
+    <TypeScriptCompile Include="config\fourinarow.config.interfaces.ts" />
+    <TypeScriptCompile Include="config\fourinarow.config.ts" />
+    <TypeScriptCompile Include="server\db.ts" />
+    <TypeScriptCompile Include="config\karma.conf.ts" />
+    <TypeScriptCompile Include="manual-typings\slash.d.ts" />
+    <TypeScriptCompile Include="server\routes\gameplay.ts" />
+    <TypeScriptCompile Include="server\routes\index.ts" />
+    <TypeScriptCompile Include="server\routes\game.ts" />
+    <TypeScriptCompile Include="server\routes\player.ts" />
+    <TypeScriptCompile Include="server\routes\routes.ts" />
+    <TypeScriptCompile Include="server\spec\server.spec.ts" />
+    <TypeScriptCompile Include="server\server.ts" />
+    <TypeScriptCompile Include="tools\jasmine.reporter.ts" />
+    <TypeScriptCompile Include="server\utilities\gameplay.utilities.ts" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="client\systemjs.config.ts" />

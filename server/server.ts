@@ -3,18 +3,16 @@ import * as bodyParser from 'body-parser';
 import { join } from 'path';
 import * as socketio from 'socket.io';
 
-import * as index from './routes/index';
-import * as player from './routes/player';
-import * as game from './routes/game';
-import * as gameplay from './routes/gameplay';
+import { index, player, game, gameplay } from './routes/routes';
 
-const port = 3000;
+import Config from '../config/config';
 
 const app = express();
 
-const io = socketio.listen(app.listen(port, () => {
-  console.log(`Server started on port ${port}.`);
-}));
+const server = app.listen(Config.PORT, () => {
+  console.log(`Server started on port ${Config.PORT}.`);
+});
+const io = socketio.listen(server);
 
 // View Engine
 app.set('views', join(__dirname, 'views'));
@@ -22,7 +20,7 @@ app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 
 // Set Static Folder
-app.use(express.static(join(__dirname, 'client')));
+app.use(express.static(join(__dirname, Config.APP_CLIENT)));
 
 // Body Parser MW
 app.use(bodyParser.json());
@@ -39,3 +37,5 @@ io.sockets.on('connection', (socket) => {
     io.sockets.emit('message', data);
   });
 });
+
+export = server;
