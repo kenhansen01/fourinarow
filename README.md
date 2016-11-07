@@ -12,6 +12,9 @@ Node v5 or greater, and Typescript 2.0 or greater.
 ## A 3rd thing...
 I build with VS2015, so I haven't put together a gulpfile just yet. You can run `npm run tsc && node server.js` to build and start the server.
 
+## Another piece of this puzzle...
+This was entirely created to use iPads for a specific event, so the UI is optimized for that and doesn't have a lot of things you might expect on a PC (no special pointers or screen size breakpoints).  Also, I don't actually care if you know anything about Tableau, but that is the conference that this was created for.
+
 ### What happens.
 There's a signup at localhost:3000/signup. Enter player info here.
 There's a gamestart at localhost:3000/gamestart. Choose 2 players click start. A game board appears, select the column the chip was dropped in and it fills in a color.
