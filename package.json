@@ -10,7 +10,8 @@
     "tsc": "tsc && cd client && tsc && cd ..",
     "postinstall": "cd client && npm install && cd ..",
     "tslint": "tslint **/*.ts --exclude node_modules/**/*.* --exclude client/node_modules/**/*.* --exclude **/*.d.ts",
-    "test-server": "jasmine JASMINE_CONFIG_PATH=config/jasmine.json"
+    "test-server": "jasmine JASMINE_CONFIG_PATH=config/jasmine.json",
+    "start": "node server/server.js"
   },
   "author": "k.e.hansen01@gmail.com",
   "repository": "git://github.com/kenhansen01/fourinarow",
